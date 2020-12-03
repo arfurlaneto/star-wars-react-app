@@ -7,6 +7,7 @@ import {
   FiTruck,
   FiZap,
   FiStar,
+  FiTrash2
 } from 'react-icons/fi';
 
 import './App.css';
@@ -27,6 +28,12 @@ function App() {
     }
   }, [favorites]);
 
+  const removeFromFavorite = useCallback((oldFavorite: string) => {
+    setFavorites(
+      (favoritesPrevValue: string[]) => favoritesPrevValue.filter(value => value !== oldFavorite)
+    );
+  }, []);
+
   return (
     <div>
       <div className="title">
@@ -35,11 +42,18 @@ function App() {
       </div>
       
       <div className="favorite-box">
-        <div>
-          <span>Favorites:</span>
-          {favorites.join(', ')}
-          {favorites.length === 0 && ' - '}
-        </div>
+          <span className="favorite-box-label">Favorites:</span>
+          {favorites.map((favorite: string) => 
+            <span className="favorite-item" key={favorite}>{favorite}
+              <button
+                className="remove-favorite-button"
+                onClick={() => { removeFromFavorite(favorite); }}
+              >
+                <FiTrash2 size="15px" />
+              </button>
+            </span>
+          )}
+          {favorites.length === 0 && <span> - </span>}
       </div>
 
       <div className="people-box">

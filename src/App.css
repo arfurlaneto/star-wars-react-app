@@ -14,14 +14,44 @@ body, input, button {
 }
 
 .favorite-box {
-  margin: 20px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin: 20px;
 }
 
-.favorite-box span {
+.favorite-box-label {
   font-weight: bold;
   margin-right: 5px;
+}
+
+.favorite-item {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  position: relative;
+}
+
+.favorite-item:not(:last-child):after {
+  content: ',';
+}
+
+.remove-favorite-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: red;
+  display: none;
+  position: absolute;
+  top: 20px;
+} 
+
+.favorite-item:hover .remove-favorite-button {
+ display: inline; 
 }
 
 .people-box {
