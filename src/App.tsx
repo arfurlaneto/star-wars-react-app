@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 import {
@@ -6,12 +6,14 @@ import {
   FiTwitter,
   FiTruck,
   FiZap,
+  FiStar,
 } from 'react-icons/fi';
 
 import './App.css';
 
 function App() {
   const [people, setPeople] = useState<any>([]);
+  const [favorites, setFavorites] = useState<any>([]);
 
   useEffect(() => {
     axios.get('https://swapi.dev/api/people/').then(response => {
@@ -19,16 +21,40 @@ function App() {
     })
   }, []);
 
+  const addToFavorite = useCallback((newFavorite: string) => {
+    if (favorites.indexOf(newFavorite) < 0) {
+      setFavorites((favoritesPrevValue: string[]) => [ ...favoritesPrevValue, newFavorite ]);
+    }
+  }, [favorites]);
+
   return (
     <div>
       <div className="title">
         Star Wars React App
         {people.length === 0 && <><br />Loading...</>}
       </div>
+      
+      <div className="favorite-box">
+        <div>
+          <span>Favorites:</span>
+          {favorites.join(', ')}
+          {favorites.length === 0 && ' - '}
+        </div>
+      </div>
 
       <div className="people-box">
         {people.map((p: any) =>
           <div className="people" key={p.name}>
+            {favorites.indexOf(p.name) < 0 &&
+              <button
+                className="favorite-button"
+                type="button"
+                onClick={() => { addToFavorite(p.name); }}
+              >
+                <FiStar></FiStar>
+              </button>
+            }
+
             <div className="people-attribute">
               <span>Name:</span> {p.name}
             </div>
