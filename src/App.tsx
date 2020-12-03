@@ -21,7 +21,10 @@ function App() {
 
   return (
     <div>
-      <div className="title">Star Wars React App</div>
+      <div className="title">
+        Star Wars React App
+        {people.length === 0 && <><br />Loading...</>}
+      </div>
 
       <div className="people-box">
         {people.map((p: any) =>
@@ -64,6 +67,7 @@ function App() {
 
             <div className="people-link-list">
               <span><FiFilm /> Films</span>
+              {p.films.length === 0 && <div>Nothing</div>}
               {p.films.map((film: any) =>
                 <div key={film}><a href={film}>{film}</a></div>
               )}
@@ -71,6 +75,7 @@ function App() {
             
             <div className="people-link-list">
               <span><FiTwitter /> Species</span>
+              {p.species.length === 0 && <div>Nothing</div>}
               {p.species.map((specie: any) =>
                 <div key={specie}><a href={specie}>{specie}</a></div>
               )}
@@ -78,6 +83,7 @@ function App() {
             
             <div className="people-link-list">
               <span><FiTruck/> Vehicles</span>
+              {p.vehicles.length === 0 && <div>Nothing</div>}
               {p.vehicles.map((vehicle: any) =>
                 <div key={vehicle}><a href={vehicle}>{vehicle}</a></div>
               )}
@@ -85,6 +91,7 @@ function App() {
             
             <div className="people-link-list">
               <span><FiZap/> Starships</span>
+              {p.starships.length === 0 && <div>Nothing</div>}
               {p.starships.map((starship: any) =>
                 <div key={starship}><a href={starship}>{starship}</a></div>
               )}
