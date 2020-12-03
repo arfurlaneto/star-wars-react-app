@@ -10,15 +10,19 @@ Simple react app using Star Wars API (https://swapi.dev/) for onboarding of new 
 ```bash
 npx create-react-app star-wars-react-app --template typescript
 ```
+2. Open app folder.
+```bash
+cd star-wars-react-app
+```
 
-2. Install axios.
+3. Install axios.
 ```bash
 yarn add axios
 ```
 
-2. Run the app.
+4. Run the app.
 ```
 yarn run start
 ```
 
-3. Follow the commits.
+5. Follow the commits.
