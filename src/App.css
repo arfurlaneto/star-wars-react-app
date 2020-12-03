@@ -1,0 +1,28 @@
+.title {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.people {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 5px 5px 2px 0px rgba(191,170,170,0.25);
+}
+
+.people-attribute span {
+  font-weight: bold;
+}
+
+.people-link-list span {
+  font-size: larger;
+}
+
+.people-link-list {
+  margin: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
