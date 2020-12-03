@@ -25,4 +25,4 @@ yarn add axios
 yarn run start
 ```
 
-5. Follow the commits.
+5. Open the app folder in your code editor and follow the commits.
