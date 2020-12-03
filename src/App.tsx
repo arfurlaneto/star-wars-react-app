@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
+import {
+  FiFilm,
+  FiTwitter,
+  FiTruck,
+  FiZap,
+} from 'react-icons/fi';
+
 import './App.css';
 
 function App() {
@@ -55,28 +63,28 @@ function App() {
             </div>
 
             <div className="people-link-list">
-              <span>Films</span>
+              <span><FiFilm /> Films</span>
               {p.films.map((film: any) =>
                 <div key={film}><a href={film}>{film}</a></div>
               )}
             </div>
             
             <div className="people-link-list">
-              <span>Species</span>
+              <span><FiTwitter /> Species</span>
               {p.species.map((specie: any) =>
                 <div key={specie}><a href={specie}>{specie}</a></div>
               )}
             </div>
             
             <div className="people-link-list">
-              <span>Vehicles</span>
+              <span><FiTruck/> Vehicles</span>
               {p.vehicles.map((vehicle: any) =>
                 <div key={vehicle}><a href={vehicle}>{vehicle}</a></div>
               )}
             </div>
             
             <div className="people-link-list">
-              <span>Starships</span>
+              <span><FiZap/> Starships</span>
               {p.starships.map((starship: any) =>
                 <div key={starship}><a href={starship}>{starship}</a></div>
               )}
