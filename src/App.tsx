@@ -49,7 +49,7 @@ function App() {
                 className="remove-favorite-button"
                 onClick={() => { removeFromFavorite(favorite); }}
               >
-                <FiTrash2 size="15px" />
+                <FiTrash2 size="15px" title="Remove from favorites."/>
               </button>
             </span>
           )}
