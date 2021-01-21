@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
-import People from './People';
-import Films from './Films';
-import Starships from './Starships';
-import Vehicles from './Vehicles';
-import Species from './Species';
-import Planets from './Planets';
+import People from './pages/People';
+import Films from './pages/Films';
+import Starships from './pages/Starships';
+import Vehicles from './pages/Vehicles';
+import Species from './pages/Species';
+import Planets from './pages/Planets';
 
 import './App.css';
 
