@@ -14,8 +14,6 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <input type="text"></input>
-
         <div className="menu">
           <Link to="people">People</Link>
           <Link to="films">Films</Link>
