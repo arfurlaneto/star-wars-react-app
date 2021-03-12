@@ -1,56 +1,44 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
+import PaginatedList from './components/PaginatedList';
 
-import People from './pages/People';
-import Films from './pages/Films';
-import Starships from './pages/Starships';
-import Vehicles from './pages/Vehicles';
-import Species from './pages/Species';
-import Planets from './pages/Planets';
+import {
+  MenuContainer,
+  MenuItemText
+} from './styles'
 
-import './App.css';
+const endpoints = [
+  "people",
+  "films",
+  "starships",
+  "vehicles",
+  "species",
+  "planets",
+]
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-        <div className="menu">
-          <Link to="people">People</Link>
-          <Link to="films">Films</Link>
-          <Link to="starships">Starships</Link>
-          <Link to="vehicles">Vehicles</Link>
-          <Link to="species">Species</Link>
-          <Link to="planets">Planets</Link>
-        </div>
+        <MenuContainer>
+          {endpoints.map(endpoint =>
+            <MenuItemText key={endpoint}>
+              <Link to={endpoint}>
+                {endpoint}
+              </Link>
+            </MenuItemText>
+          )}
+        </MenuContainer>
 
         <Switch>
-          <Route path="/" exact>
-            <People title="PESSOAS LEGAIS"></People>
+          <Route key="/" path="/" exact>
+            <Redirect to={`/${endpoints[0]}`} />
           </Route>
-
-          <Route path="/people">
-            <People></People>
-          </Route>
-
-          <Route path="/films">
-              <Films></Films>
-          </Route>
-
-          <Route path="/starships">
-            <Starships></Starships>
-          </Route>
-
-          <Route path="/vehicles">
-            <Vehicles></Vehicles>
-          </Route>
-
-          <Route path="/species">
-            <Species></Species>
-          </Route>
-
-          <Route path="/planets">
-            <Planets></Planets>
-          </Route>
+          {endpoints.map(endpoint =>
+            <Route key={endpoint} path={`/${endpoint}`}>
+              <PaginatedList endpoint={endpoint}></PaginatedList>
+            </Route>
+            )}
         </Switch>
       </BrowserRouter>
     </div>
