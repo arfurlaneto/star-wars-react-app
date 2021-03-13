@@ -4,6 +4,7 @@ import { DataItem } from '../../models/DataItem';
 import { JsonSchema } from '../../models/JsonSchema';
 
 import CardReference from './CardReference';
+import FavoriteButton from './FavoriteButton';
 import GoogleLink from './GoogleLink';
 import WookieepediaLink from './WookieepediaLink'
 
@@ -30,16 +31,22 @@ const Card : React.FC<CardProps> = ({ schema, item }) => {
   return <CardContainer className="component_card_container_root">
 
     <CardTitleContainer>
-      <CardTitleText>{item.name || item.title}</CardTitleText>
+      <CardTitleText>
+        {item.name || item.title}
+      </CardTitleText>
 
       <ExternalLinksContainer>
-        <WookieepediaLink
-          searchTerm={item.name as string || item.title as string}
-          size={28}
+        <FavoriteButton
+          url={item.url as string}
+          size={24}
         />
         <GoogleLink
           searchTerm={item.name as string || item.title as string}
           size={23}
+        />
+        <WookieepediaLink
+          searchTerm={item.name as string || item.title as string}
+          size={25}
         />
       </ExternalLinksContainer>
     </CardTitleContainer>

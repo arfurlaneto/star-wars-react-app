@@ -33,6 +33,10 @@ export const ExternalLinksContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
 
+  & > *:first-child {
+    margin-top: -4px;
+  }
+  
   & svg {
     margin-left: 5px;
   }
