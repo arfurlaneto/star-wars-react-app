@@ -9,6 +9,8 @@ import WookieepediaLink from './WookieepediaLink'
 
 import {
   CardContainer,
+  CardTitleContainer,
+  CardTitleText,
   ExternalLinksContainer,
   FieldContainer,
   FieldLabel,
@@ -27,22 +29,26 @@ interface CardProps {
 const Card : React.FC<CardProps> = ({ schema, item }) => {
   return <CardContainer className="component_card_container_root">
 
-    <ExternalLinksContainer>
-      <WookieepediaLink
-        searchTerm={item.name as string || item.title as string}
-        size={25}
-      />
-      <GoogleLink
-        searchTerm={item.name as string || item.title as string}
-        size={20}
-      />
-    </ExternalLinksContainer>
+    <CardTitleContainer>
+      <CardTitleText>{item.name || item.title}</CardTitleText>
+
+      <ExternalLinksContainer>
+        <WookieepediaLink
+          searchTerm={item.name as string || item.title as string}
+          size={28}
+        />
+        <GoogleLink
+          searchTerm={item.name as string || item.title as string}
+          size={23}
+        />
+      </ExternalLinksContainer>
+    </CardTitleContainer>
 
     {Object.keys(item).map((key: string) => {
       const metadata = schema.properties[key];
       const value = item[key];
 
-      if (key === 'url') {
+      if (key === 'url' || key === 'name' || key === 'title') {
         return <React.Fragment key={key}></React.Fragment >
       }
 

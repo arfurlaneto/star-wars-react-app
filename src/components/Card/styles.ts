@@ -4,11 +4,24 @@ export const CardContainer = styled.div`
   margin: 10px;
   width: 350px;
   border: 1px solid #ddd;
-  padding: 10px;
+  padding: 0px 10px 10px;
 `
 
+export const CardTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 -10px;
+  margin-bottom: 10px;
+  padding: 5px 15px;
+  background-color: #ddd;
+`;
+
+export const CardTitleText = styled.div`
+  font-size: large;
+`;
+
 export const ExternalLinksContainer = styled.div`
-  float: right;
   display: flex;
   align-items: center;
   justify-content: flex-end;
