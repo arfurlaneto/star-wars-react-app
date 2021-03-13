@@ -16,12 +16,12 @@ export default createGlobalStyle`
 
   html, body, #root {
     height: 100%;
+    background-color: ${p => p.theme.backgroundDark};
   }
 
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
     overflow-y: scroll;
   }
 

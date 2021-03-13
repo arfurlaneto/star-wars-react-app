@@ -14,6 +14,7 @@ import { PaginatedResult } from '../../models/PaginatedResult';
 import Card from '../Card';
 
 import {
+  PaginatedListHeader,
   TitleContainer,
   TitlePrimaryText,
   TitleSecondaryText,
@@ -92,58 +93,60 @@ function PaginatedList({ endpoint  }: PeopleProps) {
 
   return (
     <div>
-      <TitleContainer>
-        <TitlePrimaryText>
-          {(schema && schema.title) || <div>&nbsp;</div>}
-        </TitlePrimaryText>
-        <TitleSecondaryText>
-          {(schema && schema.description) || <div>&nbsp;</div>}
-        </TitleSecondaryText>
-      </TitleContainer>
+      <PaginatedListHeader>
+        <TitleContainer>
+          <TitlePrimaryText>
+            {(schema && schema.title) || <div>&nbsp;</div>}
+          </TitlePrimaryText>
+          <TitleSecondaryText>
+            {(schema && schema.description) || <div>&nbsp;</div>}
+          </TitleSecondaryText>
+        </TitleContainer>
 
-      <SearchForm onSubmit={applySearch}>
-        <SearchField
-          type="text"
-          maxLength={50}
-          value={searchDraft}
-          onChange={e => setSearchDraft(e.target.value)}
-          disabled={loadingData}
-        />
-        
-        <SearchButton
-          type="submit"
-          disabled={loadingData}
-        >
-          Search
-        </SearchButton>
-      </SearchForm>
+        <SearchForm onSubmit={applySearch}>
+          <SearchField
+            type="text"
+            maxLength={20}
+            value={searchDraft}
+            onChange={e => setSearchDraft(e.target.value)}
+            disabled={loadingData}
+          />
+          
+          <SearchButton
+            type="submit"
+            disabled={loadingData}
+          >
+            Search
+          </SearchButton>
+        </SearchForm>
 
-      <PaginationController>
-        <PaginationPrevButton 
-          type="button"
-          onClick={goToPreviousPage}
-          disabled={loadingData || !data || !schema || (data && !data.previous)}
-        >
-            Previous
-        </PaginationPrevButton>
+        <PaginationController>
+          <PaginationPrevButton 
+            type="button"
+            onClick={goToPreviousPage}
+            disabled={loadingData || !data || !schema || (data && !data.previous)}
+          >
+              Previous
+          </PaginationPrevButton>
 
-        <PaginationPageNumberText>
-          {(data && schema && data.results.length > 0 &&
-            <>
-              Page <span>{(paginationParams.page) || <span>&nbsp;</span>}</span> of{' '}
-              <span>{(totalPages) || <span>&nbsp;</span>}</span>
-            </>
-          )}
-        </PaginationPageNumberText>
+          <PaginationPageNumberText>
+            {(data && schema && data.results.length > 0 &&
+              <>
+                Page <span>{(paginationParams.page) || <span>&nbsp;</span>}</span> of{' '}
+                <span>{(totalPages) || <span>&nbsp;</span>}</span>
+              </>
+            )}
+          </PaginationPageNumberText>
 
-        <PaginationNextButton 
-          type="button"
-          onClick={goToNextPage} 
-          disabled={loadingData || !data || !schema || (data && !data.next)}
-        >
-            Next
-        </PaginationNextButton>
-      </PaginationController>
+          <PaginationNextButton 
+            type="button"
+            onClick={goToNextPage} 
+            disabled={loadingData || !data || !schema || (data && !data.next)}
+          >
+              Next
+          </PaginationNextButton>
+        </PaginationController>
+      </PaginatedListHeader>
 
       {loadingData && (
         <LoadingContainer>
@@ -151,7 +154,7 @@ function PaginatedList({ endpoint  }: PeopleProps) {
         </LoadingContainer>
       )}
 
-      {data && schema && !data.results.length && (
+      {!loadingData && data && schema && !data.results.length && (
         <NoItemsContainer>
           <NoItemsText>No results</NoItemsText>
         </NoItemsContainer>

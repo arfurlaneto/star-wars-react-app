@@ -101,7 +101,7 @@ const Card : React.FC<CardProps> = ({ schema, item }) => {
             <CardReferenceListTitle>{label}</CardReferenceListTitle>
             {(value as string[]).length === 0 && (
               <CardReferenceListItem>
-                <CardReferenceListEmptyText>Empty</CardReferenceListEmptyText>
+                <CardReferenceListEmptyText>-</CardReferenceListEmptyText>
               </CardReferenceListItem>
             )}
             {(value as string[]).map(link => {
