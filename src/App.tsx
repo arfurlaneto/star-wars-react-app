@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, NavLink, Redirect } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import PaginatedList from './components/PaginatedList';
 import Favorites from './components/Favorites';
+import CardNavigation from './components/CardNavigation';
+import PaginatedList from './components/PaginatedList';
 
 import GlobalStyles from './globalStyles';
 
@@ -22,19 +23,16 @@ function App() {
             <GlobalStyles></GlobalStyles>
             
             <MenuContainer>
-              <MenuItemText><NavLink to="favorites">favorites</NavLink></MenuItemText>
-              <MenuItemText><NavLink to="people">people</NavLink></MenuItemText>
-              <MenuItemText><NavLink to="films">films</NavLink></MenuItemText>
-              <MenuItemText><NavLink to="starships">starships</NavLink></MenuItemText>
-              <MenuItemText><NavLink to="vehicles">vehicles</NavLink></MenuItemText>
-              <MenuItemText><NavLink to="species">species</NavLink></MenuItemText>
-              <MenuItemText><NavLink to="planets">planets</NavLink></MenuItemText>
+              <MenuItemText><NavLink to="/favorites">favorites</NavLink></MenuItemText>
+              <MenuItemText><NavLink to="/people">people</NavLink></MenuItemText>
+              <MenuItemText><NavLink to="/films">films</NavLink></MenuItemText>
+              <MenuItemText><NavLink to="/starships">starships</NavLink></MenuItemText>
+              <MenuItemText><NavLink to="/vehicles">vehicles</NavLink></MenuItemText>
+              <MenuItemText><NavLink to="/species">species</NavLink></MenuItemText>
+              <MenuItemText><NavLink to="/planets">planets</NavLink></MenuItemText>
             </MenuContainer>
 
             <Switch>
-              <Route path="/" exact>
-                <Redirect to="/people" />
-              </Route>
               <Route path="/favorites">
                 <Favorites></Favorites>
               </Route>
@@ -55,6 +53,9 @@ function App() {
               </Route>
               <Route path="/planets">
                 <PaginatedList endpoint="planets" />
+              </Route>
+              <Route path="/show/:url">
+                <CardNavigation></CardNavigation>
               </Route>
               <Route path="*">
                 <Redirect to="/people" />

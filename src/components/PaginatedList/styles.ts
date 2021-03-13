@@ -130,5 +130,5 @@ export const NoItemsText = styled.span`
 `
 
 export const ItemsContainer = styled(Masonry)`
-  margin: 50px auto;
+  margin: 10px auto;
 `;

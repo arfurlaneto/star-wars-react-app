@@ -57,6 +57,15 @@ export const FieldLabel = styled.span`
 `
 export const FieldValue = styled.span`
   line-height: 1.3;
+
+  & a {
+    color: ${p => p.theme.textLight};
+  }
+
+  & a:hover {
+    text-decoration: underline;
+    color: ${p => p.theme.textSpecial}
+  }
 `
 
 export const CardReferenceListContainer = styled.div`
