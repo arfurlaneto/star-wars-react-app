@@ -29,7 +29,7 @@ export const SearchField = styled.input`
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
   border: 1px solid #847474;
-  height: 20px;
+  height: 30px;
   min-width: 300px;
 `
 
@@ -37,7 +37,9 @@ export const SearchButton = styled.button`
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
   border: 1px solid #847474;
-  height: 24px
+  height: 30px;
+  padding-right: 10px;
+  padding-left: 10px;
 `
 
 export const PaginationController = styled.div`
@@ -50,11 +52,18 @@ export const PaginationController = styled.div`
 export const PaginationPrevButton = styled.button`
   margin-right: 20px;
   width: 150px;
+  height: 30px;
 `
 
 export const PaginationNextButton = styled.button`
   margin-left: 20px;
   width: 150px;
+  height: 30px;
+`
+
+export const PaginationPageNumberText = styled.div`
+  width: 250px;
+  text-align: center;
 `
 
 export const LoadingContainer = styled.div`

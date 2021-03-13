@@ -4,6 +4,7 @@ import React, {
   useEffect,
   useCallback,
   FormEvent,
+  useRef,
 } from 'react';
 import { fetchManyFromUrl } from '../../services/api';
 
@@ -21,6 +22,7 @@ import {
   SearchButton,
   PaginationController,
   PaginationPrevButton,
+  PaginationPageNumberText,
   PaginationNextButton,
   LoadingContainer,
   LoadingText,
@@ -36,9 +38,8 @@ interface PeopleProps {
 }
 
 function PaginatedList({ endpoint  }: PeopleProps) {
+  const [paginationParams, setPaginationParams] = useState({ page: 1, search: ''})
   const [searchDraft, setSearchDraft] = useState<string>('');
-  const [search, setSearch] = useState<string>('');
-  const [page, setPage] = useState<number>(1);
   const [loadingData, setLoadingData] = useState<boolean>(false);
 
   const [data, setData] = useState<PaginatedResult>();
@@ -48,8 +49,19 @@ function PaginatedList({ endpoint  }: PeopleProps) {
     return data ? Math.ceil(data.count / ITENS_PER_PAGE) : 0;
   }, [data]);
 
+  const previousEndpoint = useRef<string>('');
+
   useEffect(() => {
+    if (endpoint !== previousEndpoint.current) {
+      previousEndpoint.current = endpoint;
+      setSearchDraft('');
+      setPaginationParams({ page: 1, search: ''})
+      return;
+    }
+
     setLoadingData(true);
+
+    const { page, search } = paginationParams;
 
     fetchManyFromUrl(`https://swapi.dev/api/${endpoint}/`, page, search.trim())
       .then(response => {
@@ -63,27 +75,30 @@ function PaginatedList({ endpoint  }: PeopleProps) {
       .finally(() => {
         setLoadingData(false);
       })
-  }, [endpoint, page, search]);
+  }, [endpoint, paginationParams]);
 
   const goToPreviousPage = useCallback(() => {
-    setPage(page => page - 1)
+    setPaginationParams(({ page: p, search: s }) => ({ page: p - 1, search: s }));
   }, []);
 
   const goToNextPage = useCallback(() => {
-    setPage(page => page + 1)
+    setPaginationParams(({ page: p, search: s }) => ({ page: p + 1, search: s }));
   }, []);
 
   const applySearch = useCallback((e : FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setPage(1);
-    setSearch(searchDraft);
+    setPaginationParams({ page: 1, search: searchDraft });
   }, [searchDraft]);
 
   return (
     <div>
       <TitleContainer>
-        <TitlePrimaryText>{schema && schema.title}</TitlePrimaryText>
-        <TitleSecondaryText>{schema && schema.description}</TitleSecondaryText>
+        <TitlePrimaryText>
+          {(schema && schema.title) || <div>&nbsp;</div>}
+        </TitlePrimaryText>
+        <TitleSecondaryText>
+          {(schema && schema.description) || <div>&nbsp;</div>}
+        </TitleSecondaryText>
       </TitleContainer>
 
       <SearchForm onSubmit={applySearch}>
@@ -107,17 +122,24 @@ function PaginatedList({ endpoint  }: PeopleProps) {
         <PaginationPrevButton 
           type="button"
           onClick={goToPreviousPage}
-          disabled={loadingData || (data && !data.previous)}
+          disabled={loadingData || !data || !schema || (data && !data.previous)}
         >
             Previous
         </PaginationPrevButton>
 
-        {data && schema && <div>Page {page} of {totalPages}</div>}
+        <PaginationPageNumberText>
+          {(data && schema && data.results.length > 0 &&
+            <>
+              Page <span>{(paginationParams.page) || <span>&nbsp;</span>}</span> of{' '}
+              <span>{(totalPages) || <span>&nbsp;</span>}</span>
+            </>
+          )}
+        </PaginationPageNumberText>
 
         <PaginationNextButton 
           type="button"
           onClick={goToNextPage} 
-          disabled={loadingData || (data && !data.next)}
+          disabled={loadingData || !data || !schema || (data && !data.next)}
         >
             Next
         </PaginationNextButton>
