@@ -1,4 +1,4 @@
-# Star Wars React App
+# 🛸 Star Wars React App
 
 
 ## About
@@ -15,13 +15,22 @@ Study project with some cool features:
 - Local Storage as a data cache.
 - Themed styled components.
 
-<p align="center">
- <img src="/.github/screenshot_001.png">
-</p>
-
 ## Running
 
 ```sh
 yarn
 yarn start
 ```
+## Screenshots
+
+<p align="center">
+ <img src="/.github/screenshot_001.png">
+</p>
+
+<p align="center">
+ <img src="/.github/screenshot_002.png">
+</p>
+
+<p align="center">
+ <img src="/.github/screenshot_003.png">
+</p>
