@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import Masonry from 'react-masonry-component';
+
 export const TitleContainer = styled.div`
   margin-top: 30px;
   display: flex;
@@ -90,16 +92,6 @@ export const NoItemsText = styled.span`
   font-weight: bold;
 `
 
-export const ItemsContainer = styled.div`
-  margin-top: 50px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-around;
-  flex-wrap: wrap;
-
-  & > div {
-    width: 300px;
-    margin-bottom: 30px;
-    border-radius: 10px;
-  }
-`
+export const ItemsContainer = styled(Masonry)`
+  margin: 50px auto;
+`;

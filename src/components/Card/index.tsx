@@ -25,7 +25,7 @@ interface CardProps {
 }
 
 const Card : React.FC<CardProps> = ({ schema, item }) => {
-  return <CardContainer>
+  return <CardContainer className="component_card_container_root">
 
     <ExternalLinksContainer>
       <WookieepediaLink

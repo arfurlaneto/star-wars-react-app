@@ -157,7 +157,9 @@ function PaginatedList({ endpoint  }: PeopleProps) {
         </NoItemsContainer>
       )}
 
-      <ItemsContainer>
+      <ItemsContainer
+        options={{ itemSelector: ".component_card_container_root", fitWidth: true }}
+      >
         {!loadingData && data && schema && data.results.map((item: any) =>
           <Card key={item.url} schema={schema} item={item}></Card> 
         )}
