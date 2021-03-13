@@ -44,8 +44,7 @@ export const FieldContainer = styled.div`
 
 export const FieldLabel = styled.span`
   text-transform: capitalize;
-  margin-right: 10px;
-  font-weight: 600;
+  margin-right: 5px;
   color: ${p => p.theme.textDark};
 
   &:after {
@@ -57,7 +56,7 @@ export const FieldValue = styled.span`
 `
 
 export const CardReferenceListContainer = styled.div`
-  border: 1px solid ${p => p.theme.textDark};
+  border: 1px solid ${p => opacify(-0.9, p.theme.textLight)};
   border-radius: 4px;
   padding: 10px;
   margin: 10px;
