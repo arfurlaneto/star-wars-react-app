@@ -4,9 +4,12 @@ import { DataItem } from '../../models/DataItem';
 import { JsonSchema } from '../../models/JsonSchema';
 
 import CardReference from './CardReference';
+import GoogleLink from './GoogleLink';
+import WookieepediaLink from './WookieepediaLink'
 
 import {
   CardContainer,
+  ExternalLinksContainer,
   FieldContainer,
   FieldLabel,
   FieldValue,
@@ -23,6 +26,18 @@ interface CardProps {
 
 const Card : React.FC<CardProps> = ({ schema, item }) => {
   return <CardContainer>
+
+    <ExternalLinksContainer>
+      <WookieepediaLink
+        searchTerm={item.name as string || item.title as string}
+        size={25}
+      />
+      <GoogleLink
+        searchTerm={item.name as string || item.title as string}
+        size={20}
+      />
+    </ExternalLinksContainer>
+
     {Object.keys(item).map((key: string) => {
       const metadata = schema.properties[key];
       const value = item[key];

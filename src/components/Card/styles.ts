@@ -5,6 +5,13 @@ export const CardContainer = styled.div`
   padding: 10px;
 `
 
+export const ExternalLinksContainer = styled.div`
+  float: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
 export const FieldContainer = styled.div``
 
 export const FieldLabel = styled.span`
