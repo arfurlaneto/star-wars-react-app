@@ -47,6 +47,15 @@ const Card : React.FC<CardProps> = ({ schema, item }) => {
             <FieldValue>{value}</FieldValue>
           </FieldContainer>
         );
+      } else if (metadata.type === 'string' && metadata.format === 'date') {
+        const label = key.replace(/_/g, ' ');
+        const formattedValue = new Date(value as string).toLocaleDateString();
+        return(
+          <FieldContainer title={metadata.description} key={key}>
+            <FieldLabel>{label}</FieldLabel>
+            <FieldValue>{formattedValue}</FieldValue>
+          </FieldContainer>
+        );
       } else if (metadata.type === 'string' && metadata.format === 'date-time') {
         const label = key.replace(/_/g, ' ');
         const formattedValue = new Date(value as string).toLocaleString();
@@ -54,6 +63,14 @@ const Card : React.FC<CardProps> = ({ schema, item }) => {
           <FieldContainer title={metadata.description} key={key}>
             <FieldLabel>{label}</FieldLabel>
             <FieldValue>{formattedValue}</FieldValue>
+          </FieldContainer>
+        );
+      } else if (metadata.type === 'integer') {
+        const label = key.replace(/_/g, ' ');
+        return(
+          <FieldContainer title={metadata.description} key={key}>
+            <FieldLabel>{label}</FieldLabel>
+            <FieldValue>{value}</FieldValue>
           </FieldContainer>
         );
       } else if (metadata.type === 'array') {
