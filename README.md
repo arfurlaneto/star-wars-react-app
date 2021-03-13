@@ -1,5 +1,7 @@
 # Star Wars React App
 
+
+## About
 React application showing data from Star Wars API (https://swapi.dev/).
 
 Study project with some cool features:
@@ -13,3 +15,10 @@ Study project with some cool features:
 <p align="center">
  <img src="/.github/screenshot_001.png">
 </p>
+
+## Running
+
+```sh
+yarn
+yarn start
+```
